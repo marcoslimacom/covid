@@ -2,8 +2,8 @@ const path = require("path");
 const update = require("./app/update");
 
 const WORKSPACE = process.env.GITHUB_WORKSPACE;
-const DATA_REPO = "data"; // from main.yml checkout action path
-const MAIN_REPO = "main"; // from main.yml checkout action path
+const DATA_REPO = "data";
+const MAIN_REPO = "main";
 
 const dataPath = path.join(
   WORKSPACE,
