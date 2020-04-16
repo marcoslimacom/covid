@@ -1,4 +1,4 @@
-Transforms the data from [CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19) into a json file. Available at [https://marcoslima.github.io/covid19/timeseries.json](https://marcoslima.github.io/covid19/timeseries.json). Updated three times a day using GitHub Actions.
+Transforms the data from [CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19) into a json file. Available at [https://marcoslimacom.github.io/covid19/timeseries.json](https://marcoslimacom.github.io/covid19/timeseries.json). Updated three times a day using GitHub Actions.
 
 The json contains the number of Coronavirus confirmed cases, deaths, and recovered cases for every country and every day since 2020-1-22:
 
