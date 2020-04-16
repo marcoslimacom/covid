@@ -31,10 +31,10 @@ steps:
     azureSubscription: 'Pago pelo Uso (0ddc9a8c-79b9-42e5-bc09-ee677e25ff09)'
     scriptType: 'batch'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob delete-batch --source "$web" --account-name %ACCOUNT% --pattern "*" --account-key "%KEY%"'
+    inlineScript: 'az storage blob delete-batch --source "$web" --account-name %ACCOUNT% --pattern "*" --account-key %KEY%'
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Pago pelo Uso (0ddc9a8c-79b9-42e5-bc09-ee677e25ff09)'
     scriptType: 'batch'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --account-name "%ACCOUNT%" --source ./docs --destination "$web" --account-key "%KEY%"'
+    inlineScript: 'az storage blob upload-batch --account-name %ACCOUNT% --source ./docs --destination "$web" --account-key %KEY%'
