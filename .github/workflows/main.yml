@@ -18,9 +18,10 @@ jobs:
         with:
           repository: marcoslimacom/covid19
           path: data
-      - name: Hello world action step
-        uses: ./main/
-        id: hello
+      - name: Install Dependencies
+        run: npm install
+      - name: Run updated
+        run: npm run update
       - name: Commit files
         run: |
           cd main
