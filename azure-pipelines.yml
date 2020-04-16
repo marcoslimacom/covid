@@ -19,13 +19,6 @@ steps:
     npm install
     npm run update
   displayName: 'npm install and update'
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Pago pelo Uso (0ddc9a8c-79b9-42e5-bc09-ee677e25ff09)'
