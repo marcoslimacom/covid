@@ -1,5 +1,5 @@
 const path = require("path");
-const update = require("./app/update");
+const update = require("./app/update-v2");
 
 const WORKSPACE = process.env.GITHUB_WORKSPACE;
 const DATA_REPO = "data";

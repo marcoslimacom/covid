@@ -4,7 +4,7 @@ The json contains the number of Coronavirus confirmed cases, deaths, and recover
 
 ```
 {
-  "Brazi": [
+  "Brazil": [
     {
       "date": "2020-1-22",
       "confirmed": 0,
