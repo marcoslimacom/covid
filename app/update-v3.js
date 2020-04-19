@@ -24,6 +24,8 @@ function extract(filepath, metric, data) {
     data["Global"]["ENGLISH"] = "Global";
     data["Global"][metric] = data["Global"][metric] || {};
 
+    country = country === "US" ? "United States of America" : country;
+
     data[country] = data[country] || {};
     data[country]["ENGLISH"] = country;
     data[country][metric] = data[country][metric] || {};
