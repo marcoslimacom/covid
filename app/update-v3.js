@@ -29,7 +29,7 @@ function extract(filepath, metric, data) {
     data[country][metric] = data[country][metric] || {};
 
     normalDates.forEach((date, i) => {
-      data[country][metric][date] = data[country][date] || 0;
+      data[country][metric][date] = data[country][metric][date] || 0;
       data[country][metric][date] += +counts[i];
 
       data["Global"][metric][date] = data["Global"][metric][date] || 0;
