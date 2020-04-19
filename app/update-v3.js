@@ -28,9 +28,21 @@ function extract(filepath, metric, data) {
     data[country]["ENGLISH"] = country;
     data[country][metric] = data[country][metric] || {};
 
+    if (province) {
+      data[country][province] = data[country][province] || {};
+      data[country][province]["ENGLISH"] = province;
+      data[country][province][metric] = data[country][province][metric] || {};
+    }
+
     normalDates.forEach((date, i) => {
       data[country][metric][date] = data[country][metric][date] || 0;
       data[country][metric][date] += +counts[i];
+
+      if (province) {
+        data[country][province][metric][date] =
+          data[country][province][metric][date] || 0;
+        data[country][province][metric][date] += +counts[i];
+      }
 
       data["Global"][metric][date] = data["Global"][metric][date] || 0;
       data["Global"][metric][date] =
