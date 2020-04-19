@@ -45,8 +45,7 @@ function extract(filepath, metric, data) {
       }
 
       data["Global"][metric][date] = data["Global"][metric][date] || 0;
-      data["Global"][metric][date] =
-        data["Global"][metric][date] + data[country][metric][date];
+      data["Global"][metric][date] += +counts[i];
     });
   });
   return [data, normalDates];
@@ -78,7 +77,7 @@ function update(dataPath, outputPath) {
     deaths
   );
 
-  fs.writeFileSync(outputPath, JSON.stringify(data));
+  fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 }
 
 module.exports = update;
