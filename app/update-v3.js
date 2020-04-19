@@ -65,31 +65,8 @@ function update(dataPath, outputPath) {
     "curedCount",
     deaths
   );
-  const countries = Object.keys(confirmed);
-  const results = {};
 
-  countries.forEach((country) => {
-    // Some country names are different in the recovered dataset
-    const recoverdCountry = patchCountryNames[country] || country;
-
-    if (!recovered[recoverdCountry]) {
-      console.warn(`${recoverdCountry} is missing from the recovered dataset`);
-    }
-
-    results[country] = dates.map((date) => {
-      return {
-        date,
-        confirmed: confirmed[country][date],
-        deaths: deaths[country][date],
-        recovered:
-          recovered[recoverdCountry] && recovered[recoverdCountry][date] != null
-            ? recovered[recoverdCountry][date]
-            : null,
-      };
-    });
-  });
-
-  fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+  fs.writeFileSync(outputPath, JSON.stringify(data));
 }
 
 module.exports = update;
