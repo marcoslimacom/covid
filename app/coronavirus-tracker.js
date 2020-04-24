@@ -79,7 +79,7 @@ function update(dataPath, outputPath) {
     deaths
   );
 
-  fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+  fs.writeFileSync(outputPath, JSON.stringify(data));
 }
 
 module.exports = update;
