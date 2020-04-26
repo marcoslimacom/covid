@@ -7,7 +7,10 @@ branches:
 cache:
   yarn: true
 script:
-  - git config --global user.name "${USER}"
-  - git config --global user.email "${EMAIL}"
+  - git config --global user.name "Data Updater"
+  - git config --global user.email "dataupdater@marcoslima.com"
   - echo "machine github.com login ${USER} password ${TOKEN}" > ~/.netrc
   - yarn && GIT_USER="${USER}" yarn update
+  - git add .
+  - git commit -m "Updated data"
+  - git push origin master 
