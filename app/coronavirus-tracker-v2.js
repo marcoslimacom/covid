@@ -73,8 +73,11 @@ function appendLeadingZeroes(n) {
   return n;
 }
 
-function getFormattedDate(d) {
-  const date = getDate(d);
+function getFormattedDate(d, add1day) {
+  const date = d.length === 10 ? getDate(d) : getDateNinjaFormat(d);
+  if (add1day) {
+    date.setDate(date.getDate() + 1);
+  }
   const formattedDate = `${date.getFullYear()}-${appendLeadingZeroes(
     date.getMonth() + 1
   )}-${appendLeadingZeroes(date.getDate())}`; //"2020-01-22"
@@ -82,12 +85,22 @@ function getFormattedDate(d) {
   return formattedDate;
 }
 
-function getDate(d) {
+function getDateNinjaFormat(d) {
   const dateSplited = d.split("/"); //"4/24/20"
-  let date = new Date(
+  const date = new Date(
     `20${dateSplited[2]}`,
     parseInt(dateSplited[0]) - 1,
     dateSplited[1]
+  );
+  return date;
+}
+
+function getDate(d) {
+  const dateSplited = d.split("-"); //"2020-04-24"
+  const date = new Date(
+    dateSplited[0],
+    parseInt(dateSplited[1]) - 1,
+    dateSplited[2]
   );
   return date;
 }
@@ -216,8 +229,8 @@ function update(dataPath, outputPath) {
               item.country === "USA"
                 ? "United States of America"
                 : item.country;
-            const date = getFormattedDate(lastDate);
 
+            const date = getFormattedDate(lastDate, true);
             addItem(
               data,
               country,
