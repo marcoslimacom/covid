@@ -109,6 +109,7 @@ function getCountryMapped(country) {
   country = country === "USA" ? "United States of America" : country;
   country = country === "Libyan Arab Jamahiriya" ? "Libya" : country;
   country = country === "UK" ? "United Kingdom" : country;
+  country = country === "S. Korea" ? "South Korea" : country;
   return country;
 }
 
