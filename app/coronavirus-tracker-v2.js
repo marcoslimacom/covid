@@ -149,7 +149,7 @@ function addItem(
   data["Global"][metric][date] = data["Global"][metric][date] + value;
 }
 
-function update(dataPath, outputPath) {
+function update(outputPath) {
   const data = {
     confirmedCount: {},
     curedCount: {},

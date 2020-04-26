@@ -1,16 +1,20 @@
 language: node_js
 node_js:
-  - '10'
+  - "10"
 branches:
   only:
     - master
 cache:
   yarn: true
 script:
-  - git config --global user.name "Data Updater"
-  - git config --global user.email "dataupdater@marcoslima.com"
-  - echo "machine github.com login ${USER} password ${TOKEN}" > ~/.netrc
-  - yarn && GIT_USER="${USER}" yarn update
-  - git add .
-  - git commit -m "Updated data"
-  - git push origin master 
+  - yarn && yarn copyDocToBuild && yarn deploy
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $TOKEN # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  local_dir: build
+  target_branch: gh-pages
+  on:
+    branch: master
