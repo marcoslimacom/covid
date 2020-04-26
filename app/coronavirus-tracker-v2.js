@@ -108,6 +108,7 @@ function getDate(d) {
 function getCountryMapped(country) {
   country = country === "USA" ? "United States of America" : country;
   country = country === "Libyan Arab Jamahiriya" ? "Libya" : country;
+  country = country === "UK" ? "United Kingdom" : country;
   return country;
 }
 
