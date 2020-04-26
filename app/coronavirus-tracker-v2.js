@@ -232,7 +232,7 @@ function update(outputPath) {
                 "curedCount",
                 item.province,
                 date,
-                item.timeline.deaths[i]
+                item.timeline.recovered[i]
               );
             }
           });
