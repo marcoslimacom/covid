@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const update2 = require("./update-v2");
-const coronavirusTracker = require("./coronavirus-tracker");
+const coronavirusTracker = require("./coronavirus-tracker-v2");
 
 const outputHashPath = path.join(__dirname, "../docs", "data-hash.json");
 const dataPath = path.join(__dirname, "csv");
