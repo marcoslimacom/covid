@@ -105,6 +105,12 @@ function getDate(d) {
   return date;
 }
 
+function getCountryMapped(country) {
+  country = country === "USA" ? "United States of America" : country;
+  country = country === "Libyan Arab Jamahiriya" ? "Libya" : country;
+  return country;
+}
+
 function addItem(
   data,
   country,
@@ -172,10 +178,7 @@ function update(outputPath) {
           const lastHistoricalItem = {};
           let lastDate = null;
           historical.forEach((item) => {
-            const country =
-              item.country === "USA"
-                ? "United States of America"
-                : item.country;
+            const country = getCountryMapped(item.country);
 
             // if (item.province) {
             //   data[country][item.province] = data[country][item.province] || {};
@@ -237,10 +240,7 @@ function update(outputPath) {
           const nextDate = getFormattedDate(lastDate, true);
 
           current.forEach((item) => {
-            const country =
-              item.country === "USA"
-                ? "United States of America"
-                : item.country;
+            const country = getCountryMapped(item.country);
 
             addItem(
               data,
@@ -280,7 +280,7 @@ function update(outputPath) {
               data["Global"]["deadCount"][nextDate] = global.deaths;
               data["Global"]["curedCount"][nextDate] = global.recovered;
 
-              fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+              fs.writeFileSync(outputPath, JSON.stringify(data));
             })
             .catch((err) => console.error(err));
         })
