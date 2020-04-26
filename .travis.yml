@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '10'
+branches:
+  only:
+    - master
+cache:
+  yarn: true
+script:
+  - git config --global user.name "${USER}"
+  - git config --global user.email "${EMAIL}"
+  - echo "machine github.com login ${USER} password ${TOKEN}" > ~/.netrc
+  - yarn && GIT_USER="${USER}" yarn update
