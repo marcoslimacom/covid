@@ -144,6 +144,9 @@ function addItem(
 
   //   lastHistoricalItem[country][province][metric] = value;
   // }
+
+  data["Global"][metric][date] = data["Global"][metric][date] || 0;
+  data["Global"][metric][date] = data["Global"][metric][date] + value;
 }
 
 function update(dataPath, outputPath) {
@@ -159,6 +162,13 @@ function update(dataPath, outputPath) {
       fetch("https://corona.lmao.ninja/v2/countries")
         .then((res) => res.json())
         .then((current) => {
+          data["Global"] = data["Global"] || {};
+          data["Global"]["ENGLISH"] = "Global";
+          data["Global"]["confirmedCount"] =
+            data["Global"]["confirmedCount"] || {};
+          data["Global"]["deadCount"] = data["Global"]["deadCount"] || {};
+          data["Global"]["curedCount"] = data["Global"]["curedCount"] || {};
+
           const lastHistoricalItem = {};
           let lastDate = null;
           historical.forEach((item) => {
@@ -224,20 +234,21 @@ function update(dataPath, outputPath) {
             }
           });
 
+          const nextDate = getFormattedDate(lastDate, true);
+
           current.forEach((item) => {
             const country =
               item.country === "USA"
                 ? "United States of America"
                 : item.country;
 
-            const date = getFormattedDate(lastDate, true);
             addItem(
               data,
               country,
               lastHistoricalItem,
               "confirmedCount",
               item.province,
-              date,
+              nextDate,
               item.cases
             );
 
@@ -247,7 +258,7 @@ function update(dataPath, outputPath) {
               lastHistoricalItem,
               "deadCount",
               item.province,
-              date,
+              nextDate,
               item.deaths
             );
 
@@ -257,7 +268,7 @@ function update(dataPath, outputPath) {
               lastHistoricalItem,
               "curedCount",
               item.province,
-              date,
+              nextDate,
               item.recovered
             );
           });
@@ -265,11 +276,9 @@ function update(dataPath, outputPath) {
           fetch("https://corona.lmao.ninja/v2/all")
             .then((res) => res.json())
             .then((global) => {
-              data["Global"] = {};
-              data["Global"]["ENGLISH"] = "Global";
-              data["Global"]["confirmedCount"] = global.cases;
-              data["Global"]["deadCount"] = global.deaths;
-              data["Global"]["curedCount"] = global.recovered;
+              data["Global"]["confirmedCount"][nextDate] = global.cases;
+              data["Global"]["deadCount"][nextDate] = global.deaths;
+              data["Global"]["curedCount"][nextDate] = global.recovered;
 
               fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
             })
@@ -277,7 +286,7 @@ function update(dataPath, outputPath) {
         })
         .catch((err) => console.error(err));
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 }
 
 module.exports = update;
